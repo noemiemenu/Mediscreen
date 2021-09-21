@@ -1,4 +1,4 @@
-package microserviceUsers.model;
+package microserviceUsers.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -6,19 +6,14 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 
-
+@NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-@NoArgsConstructor
 @Entity
-@Table(name = "doctor")
-public class Doctor {
-
+@Table(name = "medical_account")
+public class MedicalAccount {
     @Id
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,7 +28,10 @@ public class Doctor {
     @Column(name ="password")
     private String password;
 
-    @OneToMany
-    @JoinColumn(name = "id")
-    private List<Patient> patients = new ArrayList<>();
+    @Column(name = "address")
+    private String address;
+
+    @Column(name = "role")
+    private String role;
+
 }

@@ -1,4 +1,4 @@
-package microserviceUsers.model;
+package microserviceUsers.models;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -11,7 +11,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.List;
 
 
 @AllArgsConstructor
@@ -50,8 +49,6 @@ public class Patient implements Serializable {
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     private LocalDate birthdate;
 
-    @OneToOne
-    private MedicalFile medicalFile;
 
 
 }
