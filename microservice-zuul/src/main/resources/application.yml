@@ -3,3 +3,12 @@ zuul:
     getUser:
       path: /user/**
       url: http://localhost:8383/user/
+spring:
+  application:
+    name: microservice-zuul
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:9102/eureka/
+server:
+  port: 9101

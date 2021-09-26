@@ -1,5 +1,5 @@
 plugins {
-    id 'org.springframework.boot' version '2.5.5'
+    id "org.springframework.boot" version "2.4.11"
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
 }
@@ -26,6 +26,9 @@ dependencyManagement {
 
 dependencies {
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-zuul:2.2.9.RELEASE'
+    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
