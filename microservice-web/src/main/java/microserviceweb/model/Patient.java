@@ -1,39 +1,33 @@
-package microserviceUsers.models;
+package microserviceweb.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDate;
 
-import javax.persistence.*;
+public class Patient {
 
-
-@Entity
-@Table(name = "medical_account")
-public class MedicalAccount {
-    @Id
-    @Column(name = "id", nullable = false)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "first_name")
     private String firstName;
 
-    @Column(name = "last_name")
     private String lastName;
 
-    @Column(name ="password")
-    private String password;
-
-    @Column(name = "address")
     private String address;
 
-    @Column(name = "email")
     private String email;
 
-    @Column(name = "phone")
-    private String phone;
+    private int phone;
 
-    @Column(name = "type")
-    private String type;
+    private String gender;
 
+    @JsonFormat(pattern = "dd/MM/yyyy")
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    private LocalDate birthdate;
+
+    public Patient() {
+
+    }
 
     public int getId() {
         return id;
@@ -59,14 +53,6 @@ public class MedicalAccount {
         this.lastName = lastName;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public String getAddress() {
         return address;
     }
@@ -83,26 +69,41 @@ public class MedicalAccount {
         this.email = email;
     }
 
-
-    public String getPhone() {
+    public int getPhone() {
         return phone;
     }
 
-    public void setPhone(String phone) {
+    public void setPhone(int phone) {
         this.phone = phone;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public LocalDate getBirthdate() {
+        return birthdate;
+    }
+
+    public void setBirthdate(LocalDate birthdate) {
+        this.birthdate = birthdate;
     }
 
     @Override
     public String toString() {
-        return "MedicalAccount{" +
+        return "Patient{" +
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", password='" + password + '\'' +
                 ", address='" + address + '\'' +
                 ", email='" + email + '\'' +
-                ", phone='" + phone + '\'' +
-                ", type='" + type + '\'' +
+                ", phone=" + phone +
+                ", gender='" + gender + '\'' +
+                ", birthdate=" + birthdate +
                 '}';
     }
 }

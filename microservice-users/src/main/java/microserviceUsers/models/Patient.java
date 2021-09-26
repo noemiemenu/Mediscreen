@@ -6,14 +6,13 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.time.LocalDate;
 
 
 
 @Entity
 @Table(name = "patient")
-public class Patient implements Serializable {
+public class Patient {
 
     @Id
     @Column(name = "id", nullable = false)
@@ -106,5 +105,19 @@ public class Patient implements Serializable {
 
     public void setBirthdate(LocalDate birthdate) {
         this.birthdate = birthdate;
+    }
+
+    @Override
+    public String toString() {
+        return "Patient{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", address='" + address + '\'' +
+                ", email='" + email + '\'' +
+                ", phone=" + phone +
+                ", gender='" + gender + '\'' +
+                ", birthdate=" + birthdate +
+                '}';
     }
 }

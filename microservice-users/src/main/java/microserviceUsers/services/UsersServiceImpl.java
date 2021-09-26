@@ -5,6 +5,11 @@ import microserviceUsers.models.Patient;
 import microserviceUsers.repositories.UsersRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
+
 
 @Service
 public class UsersServiceImpl implements UsersService {
@@ -37,6 +42,13 @@ public class UsersServiceImpl implements UsersService {
     @Override
     public void deletePatient(int id) {
         usersRepository.deleteById(id);
+    }
+
+    @Override
+    public Collection<Patient> patientsList() {
+        return StreamSupport
+                .stream(usersRepository.findAll().spliterator(), false)
+                .collect(Collectors.toList());
     }
 
 

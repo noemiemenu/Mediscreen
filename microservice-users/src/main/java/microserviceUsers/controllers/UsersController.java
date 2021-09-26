@@ -1,27 +1,27 @@
 package microserviceUsers.controllers;
 
+
 import microserviceUsers.interfaces.UsersService;
 import microserviceUsers.models.Patient;
-import microserviceUsers.repositories.UsersRepository;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Collection;
+
 
 
 @RestController
 public class UsersController {
 
     private final UsersService usersService;
-    private final UsersRepository usersRepository;
 
-    public UsersController(UsersService usersService, UsersRepository usersRepository, UsersRepository usersRepository1) {
+    public UsersController(UsersService usersService) {
         this.usersService = usersService;
-        this.usersRepository = usersRepository1;
     }
 
-    @GetMapping("/patient")
-    public Iterable<Patient> patientList(){
-        return usersRepository.findAll();
+    @GetMapping("/patients")
+    public Collection<Patient> patientsList(){
+        return usersService.patientsList();
     }
 
     @PostMapping("/patient/add")
