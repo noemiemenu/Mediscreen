@@ -18,6 +18,7 @@ bin/
 !**/src/test/**/bin/
 
 ### IntelliJ IDEA ###
+.idea
 *.iws
 *.iml
 *.ipr
@@ -34,7 +35,3 @@ out/
 
 ### VS Code ###
 .vscode/
-
-
-# User-specific stuff:
-.idea
