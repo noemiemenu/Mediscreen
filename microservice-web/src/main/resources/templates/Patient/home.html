@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>Home</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <a href="/patient/home">home</a>&nbsp;|&nbsp;
+
+        </div>
+    </div>
+    <a href="/patient/add" class="btn btn-primary btn-sm">Add new Patient</a>
+    <div class="row"><h2>Patients List</h2></div>
+    <div class="row">
+        <table class="table table-bordered">
+            <thead>
+            <tr class="text-center">
+                <th>Id</th>
+                <th>First name</th>
+                <th>Family</th>
+                <th>Last name</th>
+                <th>Address</th>
+                <th>Phone</th>
+                <th>Sex</th>
+                <th>Email</th>
+                <th>Birthdate</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!--/*@thymesVar id="patient" type="com.mediscreen.web.model.Patient"*/-->
+            <tr class="text-center" th:each="patient : ${patients}">
+                <td th:text="${patient.getId()}"></td>
+                <td th:text="${patient.getFirstName()}"></td>
+                <td th:text="${patient.getFamily()}"></td>
+                <td th:text="${patient.getLastName()}"></td>
+                <td th:text="${patient.getAddress()}"></td>
+                <td th:text="${patient.getPhone()}"></td>
+                <td th:text="${patient.getSex()}"></td>
+                <td th:text="${patient.getEmail()}"></td>
+                <td th:text="${patient.getDob()}"></td>
+                <td>
+                    <a th:href="@{/patient/update/{id}(id=${patient.getId()})}">Edit</a>&nbsp;|&nbsp;
+                    <a th:href="@{/patient/delete/{id}(id=${patient.getId()})}">Delete</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

@@ -1,61 +1,50 @@
-package com.mediscreen.users.models;
-
-
-import com.fasterxml.jackson.annotation.JsonFormat;
+package com.mediscreen.web.model;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.*;
 import javax.validation.constraints.*;
+import java.io.Serializable;
 import java.time.LocalDate;
 
+public class Patient implements Serializable {
 
-
-@Entity
-@Table(name = "patient")
-public class Patient {
-
-
-    @Id
-    @Column(name = "id", nullable = false)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column
     @NotBlank
     private String family;
 
-    @Column
+    
     @NotBlank
     private String given;
 
-    @Column
+    
     private String firstName;
 
-    @Column
+    
     private String lastName;
 
-    @Column
+    
     @NotBlank
     private String address;
 
-    @Column
+    
     @Email
     private String email;
 
-    @Column
+    
     @NotBlank
     private String phone;
 
-    @Column
+    
     @NotBlank
     @Size(max = 1)
     private String sex;
 
-    @Column
+
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @NotNull
     private LocalDate dob;
+
 
     public int getId() {
         return id;
@@ -63,6 +52,22 @@ public class Patient {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getFamily() {
+        return family;
+    }
+
+    public void setFamily(String family) {
+        this.family = family;
+    }
+
+    public String getGiven() {
+        return given;
+    }
+
+    public void setGiven(String given) {
+        this.given = given;
     }
 
     public String getFirstName() {
@@ -105,34 +110,12 @@ public class Patient {
         this.phone = phone;
     }
 
-    @Override
-    public String toString() {
-        return "Patient{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", address='" + address + '\'' +
-                ", email='" + email + '\'' +
-                ", phone=" + phone +
-                ", gender='" + sex + '\'' +
-                ", birthdate=" + dob +
-                '}';
+    public String getSex() {
+        return sex;
     }
 
-    public String getFamily() {
-        return family;
-    }
-
-    public void setFamily(String family) {
-        this.family = family;
-    }
-
-    public String getGiven() {
-        return given;
-    }
-
-    public void setGiven(String given) {
-        this.given = given;
+    public void setSex(String sex) {
+        this.sex = sex;
     }
 
     public LocalDate getDob() {
@@ -141,13 +124,5 @@ public class Patient {
 
     public void setDob(LocalDate dob) {
         this.dob = dob;
-    }
-
-    public String getSex() {
-        return sex;
-    }
-
-    public void setSex(String sex) {
-        this.sex = sex;
     }
 }

@@ -1,36 +1,26 @@
-package com.mediscreen.users.models;
+package com.mediscreen.web.model;
 
-import javax.persistence.*;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
+public class MedicalAccount implements Serializable {
 
-@Entity
-@Table(name = "medical_account")
-public class MedicalAccount {
-    @Id
-    @Column(name = "id", nullable = false)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "first_name")
     private String firstName;
 
-    @Column(name = "last_name")
     private String lastName;
 
-    @Column(name ="password")
     private String password;
 
-    @Column(name = "address")
     private String address;
 
-    @Column(name = "email")
     private String email;
 
-    @Column(name = "phone")
     private String phone;
 
-    @Column(name = "type")
-    private String type;
+    private List<String> type = new ArrayList<>();
 
 
     public int getId() {
@@ -90,6 +80,7 @@ public class MedicalAccount {
         this.phone = phone;
     }
 
+
     @Override
     public String toString() {
         return "MedicalAccount{" +
@@ -102,5 +93,14 @@ public class MedicalAccount {
                 ", phone='" + phone + '\'' +
                 ", type='" + type + '\'' +
                 '}';
+    }
+
+
+    public List<String> getType() {
+        return type;
+    }
+
+    public void setType(List<String> type) {
+        this.type = type;
     }
 }

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>Home</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css" >
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <h2>Update Patient</h2>
+    </div>
+
+    <div class="row">
+        <!--/*@thymesVar id="patient" type="com.mediscreen.web.model.Patient"*/-->
+        <form th:action="@{/patient/update/{id}(id=${patient.id})}" th:object="${patient}" method="post" class="form-horizontal" style="width: 100%">
+            <div class="row mb-3">
+                <div class="mb-3">
+                    <label for="Family" class="form-label">Family</label>
+                    <input th:field="*{family}" type="text" class="form-control" id="Family" required placeholder="Family">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="mb-3">
+                    <label for="given" class="form-label">given</label>
+                    <input th:field="*{given}" type="text" class="form-control" id="given" required placeholder="given">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="mb-3">
+                    <label for="firstName" class="form-label">firstName</label>
+                    <input th:field="*{firstName}" type="text" class="form-control" id="firstName" placeholder="firstName">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="mb-3">
+                    <label for="lastName" class="form-label">lastName</label>
+                    <input th:field="*{lastName}" type="text" class="form-control" id="lastName" placeholder="lastName">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="mb-3">
+                    <label for="email" class="form-label">email</label>
+                    <input th:field="*{email}" type="email" class="form-control" id="email" placeholder="email">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="mb-3">
+                    <label for="address" class="form-label">address</label>
+                    <input th:field="*{address}" type="text" class="form-control" id="address" required placeholder="address">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="mb-3">
+                    <label for="birthdate" class="form-label">birthdate</label>
+                    <input th:field="*{dob}" type="date" class="form-control" id="birthdate" required placeholder="birthdate">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="mb-3">
+                    <label for="phone" class="form-label">phone</label>
+                    <input th:field="*{phone}" type="tel" class="form-control" id="phone" required placeholder="phone"
+                           pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                    >
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="mb-3">
+                    <label for="sex" class="form-label">sex</label>
+                    <input th:field="*{sex}" type="text" class="form-control" id="sex" required placeholder="sex">
+                </div>
+            </div>
+            <div class="col-auto">
+                <a class="btn btn-danger mb-3" role="button" href="/patient/home">Cancel</a>
+                <button type="submit" value="updatePatient" class="btn btn-primary mb-3">Update Patient</button>
+            </div>
+        </form>
+    </div>
+
+</div>
+</body>
+</html>
