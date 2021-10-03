@@ -14,7 +14,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 
-@FeignClient(name = "patient-proxy-users-api", url = "http://localhost:8081", configuration = FeignConfig.class)
+@FeignClient(name = "patient-proxy-users-api", url = "${usersAPI.service.url}", configuration = FeignConfig.class)
 public interface PatientProxy {
     @GetMapping("/patients")
     List<Patient> patientsList();

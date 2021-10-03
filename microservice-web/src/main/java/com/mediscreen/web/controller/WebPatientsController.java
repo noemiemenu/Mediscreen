@@ -26,14 +26,14 @@ public class WebPatientsController {
 
 
     @GetMapping("/patient/home")
-    public String home(Model model) {
+    public String showHome(Model model) {
         model.addAttribute("patients", patientProxy.patientsList());
-        return "/patient/home";
+        return "patient/home";
     }
 
     @GetMapping("/patient/add")
-    public String addPatientForm() {
-        return "/patient/add";
+    public String showAddPatientForm() {
+        return "patient/add";
     }
 
     @PostMapping("/patient/add")
@@ -55,7 +55,7 @@ public class WebPatientsController {
         Patient patient = patientProxy.getPatient(id);
         model.addAttribute("patient", patient);
         logger.info("Patient id from microservice-users: " + patient.getId());
-        return "/patient/update";
+        return "patient/update";
     }
 
     @PostMapping("/patient/update/{id}")

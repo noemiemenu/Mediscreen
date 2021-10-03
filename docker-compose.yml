@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   mediscreen_sql_db:
-    container_name: "mediscreen_sql_db"
+    container_name: "mediscreen-sql-db"
     image: postgres
     environment:
       - POSTGRES_PASSWORD=mediscreen
@@ -13,5 +13,10 @@ services:
   mediscreen_microservice_users:
     build: ./microservice-users
     ports:
-      - "9002:9002"
-    container_name: "mediscreen_microservice_users"
+      - "8081:8081"
+    container_name: "mediscreen-microservice-users"
+  mediscreen_microservice_web:
+    build: ./microservice-web
+    ports:
+      - "8080:8080"
+    container_name: "mediscreen-microservice-web"
