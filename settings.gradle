@@ -1,3 +1,4 @@
 rootProject.name = 'Mediscreen'
 include 'microservice-users'
 include 'microservice-web'
+include 'microservice-notes'
