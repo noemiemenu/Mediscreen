@@ -29,6 +29,8 @@
                 <th>Sex</th>
                 <th>Email</th>
                 <th>Birthdate</th>
+                <th>Notes List</th>
+                <th>Create Note</th>
             </tr>
             </thead>
             <tbody>
@@ -43,8 +45,10 @@
                 <td th:text="${patient.getSex()}"></td>
                 <td th:text="${patient.getEmail()}"></td>
                 <td th:text="${patient.getDob()}"></td>
+                <td> <a th:href="@{/note/notes/{id}(id=${patient.getId()})}">Notes</a> </td>
+                <td> <a th:href="@{/note/add/{id}(id=${patient.getId()})}">New Note</a> </td>
                 <td>
-                    <a th:href="@{/patient/update/{id}(id=${patient.getId()})}">Edit</a>&nbsp;|&nbsp;
+                    <a th:href="@{/patient/update/{id}(id=${patient.getId()})}">Edit</a> |
                     <a th:href="@{/patient/delete/{id}(id=${patient.getId()})}">Delete</a>
                 </td>
             </tr>

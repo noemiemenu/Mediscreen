@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>Note</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <a href="/patient/home">home</a>&nbsp;|&nbsp;
+
+        </div>
+    </div>
+    <div class="row"><h2>Note List</h2></div>
+    <div class="row">
+        <table class="table table-bordered">
+            <thead>
+            <tr class="text-center">
+                <th>Patient Id</th>
+                <th>Note</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!--/*@thymesVar id="note" type="com.mediscreen.web.model.Note"*/-->
+            <tr class="text-center" th:each="note : ${notes}">
+                <td th:text="${note.getPatId}"></td>
+                <td th:text="${note.getE()}"></td>
+                <td>
+                    <a th:href="@{/note/update/{id}(id=${note.getId()})}">Edit</a>&nbsp;|&nbsp;
+                    <a th:href="@{/note/delete/{id}(id=${note.getId()})}">Delete</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

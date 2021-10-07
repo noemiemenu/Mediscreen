@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>Home</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+
+    <div class="row">
+        <h2>Add Note</h2>
+    </div>
+
+    <div class="row">
+        <!--/*@thymesVar id="note" type="com.mediscreen.web.model.Note"*/-->
+        <form th:action="@{/note/add/{id}(id=${patId})}" method="post" class="form-horizontal" style="width: 100%">
+
+            <div class="mb-3">
+                <label for="e" class="form-label">Note</label>
+                <textarea name="e" class="form-control" id="e" rows="3"></textarea>
+            </div>
+            <div class="col-auto">
+                <a class="btn btn-danger mb-3" role="button" href="/patient/home">Cancel</a>
+                <button type="submit" value="AddNote" class="btn btn-primary mb-3">Add Note</button>
+            </div>
+        </form>
+    </div>
+
+</div>
+</body>
+</html>

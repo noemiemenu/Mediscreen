@@ -22,9 +22,14 @@ public class NoteController {
         this.noteNextSequenceService = noteNextSequenceService;
     }
 
-    @GetMapping("/notes/{patientId}")
-    public List<Note> getAllNotesByPatientId(@PathVariable int patientId) {
-        return noteRepository.findAllByPatId(patientId);
+    @GetMapping("/notes/{patId}")
+    public List<Note> getAllNotesByPatId(@PathVariable int patId) {
+        return noteRepository.findAllByPatId(patId);
+    }
+
+    @GetMapping("/notes")
+    public List<Note> getAllNotes() {
+        return noteRepository.findAll();
     }
 
     @GetMapping("/note/{id}")
@@ -32,10 +37,10 @@ public class NoteController {
         return noteRepository.findById(id);
     }
 
-    @PostMapping("/add")
-    public Note createNote(@Valid Note note) {
+    @PostMapping("patHistory/add/{patId}")
+    public Note createNote(@PathVariable int patId, @Valid Note note) {
         note.setId(noteNextSequenceService.getNextSequence("noteCustomSequences"));
-
+        note.setPatId(patId);
         return noteRepository.save(note);
     }
 
@@ -44,8 +49,8 @@ public class NoteController {
         return noteService.updateNote(id, note);
     }
 
-    @DeleteMapping("/deleteNote/{id}")
-    public void deleteNote(@PathVariable int id) {
+    @DeleteMapping("/note/delete/{id}")
+    public void deleteNoteById(@PathVariable int id) {
         noteRepository.deleteById(id);
     }
 }
