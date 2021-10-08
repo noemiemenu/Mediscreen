@@ -44,3 +44,4 @@ services:
     container_name: "mediscreen-microservice-notes"
     ports:
       - "8282:8282"
+

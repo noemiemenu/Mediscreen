@@ -26,6 +26,7 @@ public class WebNoteController {
     public String getAllNotesByPatId(@PathVariable int patId, Model model){
         model.addAttribute("notes", noteProxy.getAllNotesByPatId(patId));
         return "note/notes";
+
     }
 
 
