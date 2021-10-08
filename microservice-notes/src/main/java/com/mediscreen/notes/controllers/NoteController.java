@@ -4,7 +4,8 @@ import com.mediscreen.notes.interfaces.NoteService;
 import com.mediscreen.notes.model.Note;
 import com.mediscreen.notes.repository.NoteRepository;
 import com.mediscreen.notes.services.NoteNextSequenceService;
-import org.springframework.web.bind.annotation.*;
+
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.validation.Valid;
 import java.util.List;

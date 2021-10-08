@@ -19,6 +19,8 @@
         <table class="table table-bordered">
             <thead>
             <tr class="text-center">
+                <th>Note Id</th>
+
                 <th>Patient Id</th>
                 <th>Note</th>
             </tr>
@@ -26,6 +28,8 @@
             <tbody>
             <!--/*@thymesVar id="note" type="com.mediscreen.web.model.Note"*/-->
             <tr class="text-center" th:each="note : ${notes}">
+                <td th:text="${note.getId()}"></td>
+
                 <td th:text="${note.getPatId}"></td>
                 <td th:text="${note.getE()}"></td>
                 <td>
