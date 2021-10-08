@@ -41,6 +41,6 @@ services:
       ME_CONFIG_MONGODB_URL: mongodb://mediscreen:mediscreen@mediscreen-nosql-db:27017/
   mediscreen_microservice_notes:
     build: ./microservice-notes
-    ports:
-      - "8082:8082"
     container_name: "mediscreen-microservice-notes"
+    ports:
+      - "8282:8282"
