@@ -19,6 +19,9 @@ import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+/**
+ * The type Notes tests.
+ */
 @SpringBootTest
 public class NotesTests {
 
@@ -27,11 +30,17 @@ public class NotesTests {
 
     private NoteService noteService;
 
+    /**
+     * Setup.
+     */
     @BeforeEach
     public void Setup() {
         noteService = new NoteServiceIMPL(noteRepository);
     }
 
+    /**
+     * Test create note.
+     */
     @Test
     public void testCreateNote(){
         // given
@@ -52,6 +61,9 @@ public class NotesTests {
 
     }
 
+    /**
+     * Test update note.
+     */
     @Test
     public void testUpdateNote() {
         // given
@@ -71,6 +83,9 @@ public class NotesTests {
         verify(noteRepository).save(Mockito.any(Note.class));
     }
 
+    /**
+     * Test get note.
+     */
     @Test
     public void testGetNote() {
         // given
@@ -92,6 +107,9 @@ public class NotesTests {
         verify(noteRepository).findById(anyInt());
     }
 
+    /**
+     * Test delete patient.
+     */
     @Test
     public void testDeletePatient() {
         // when
@@ -102,6 +120,9 @@ public class NotesTests {
         verify(noteRepository).deleteById(anyInt());
     }
 
+    /**
+     * Test get all patients.
+     */
     @Test
     public void testGetAllPatients() {
         // given
