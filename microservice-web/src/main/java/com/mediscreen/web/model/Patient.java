@@ -10,11 +10,8 @@ public class Patient implements Serializable {
 
     private int id;
 
-    @NotBlank
     private String family;
 
-    
-    @NotBlank
     private String given;
 
     

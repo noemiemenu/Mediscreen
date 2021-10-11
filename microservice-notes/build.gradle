@@ -10,6 +10,7 @@ sourceCompatibility = '11'
 
 repositories {
     mavenCentral()
+
 }
 
 dependencies {
@@ -23,6 +24,12 @@ dependencies {
     testImplementation 'io.projectreactor:reactor-test'
 }
 
+javadoc {
+    dependsOn test
+    destinationDir = file("$rootDir/build/reports/javadoc")
+}
+
 test {
     useJUnitPlatform()
+    finalizedBy javadoc
 }

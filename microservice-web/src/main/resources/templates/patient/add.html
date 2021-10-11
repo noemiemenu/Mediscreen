@@ -3,7 +3,7 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="utf-8"/>
-  <title>Home</title>
+  <title>Mediscreen</title>
   <link rel="stylesheet" href="/css/bootstrap.min.css">
 </head>
 <body>
@@ -16,18 +16,6 @@
   <div class="row">
     <form action="#" th:action="@{/patient/add}" method="post" class="form-horizontal"
           style="width: 100%">
-      <div class="row mb-3">
-        <div class="mb-3">
-          <label for="Family" class="form-label">Family</label>
-          <input name="family" type="text" class="form-control" id="Family" required placeholder="Family">
-        </div>
-      </div>
-      <div class="row mb-3">
-        <div class="mb-3">
-          <label for="given" class="form-label">given</label>
-          <input name="given" type="text" class="form-control" id="given" required placeholder="given">
-        </div>
-      </div>
       <div class="row mb-3">
         <div class="mb-3">
           <label for="firstName" class="form-label">first name</label>
@@ -52,12 +40,29 @@
           <input name="phone" type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" class="form-control" id="phone" required placeholder="phone">
         </div>
       </div>
+
+
       <div class="row mb-3">
+        <label for="phone" class="form-label">Sex :</label>
+        <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="sex" name="sex">
+          <option selected value="F">F</option>
+          <option value="M">M</option>
+        </select>
+      </div>
+
+
+      <!--<div class="row mb-3">
         <div class="mb-3">
           <label for="sex" class="form-label">sex</label>
           <input name="sex" type=text class="form-control" id="sex" required placeholder="sex">
         </div>
-      </div>
+      </div>-->
+
+
+
+
+
+
       <div class="row mb-3">
         <div class="mb-3">
           <label for="dob" class="form-label">Birthdate</label>

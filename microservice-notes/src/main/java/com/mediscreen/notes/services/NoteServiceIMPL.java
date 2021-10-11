@@ -5,11 +5,19 @@ import com.mediscreen.notes.model.Note;
 import com.mediscreen.notes.repository.NoteRepository;
 import org.springframework.stereotype.Service;
 
+/**
+ * The type Note service.
+ */
 @Service
 public class NoteServiceIMPL implements NoteService {
 
     private final NoteRepository noteRepository;
 
+    /**
+     * Instantiates a new Note service.
+     *
+     * @param noteRepository the note repository
+     */
     public NoteServiceIMPL(NoteRepository noteRepository) {
         this.noteRepository = noteRepository;
     }

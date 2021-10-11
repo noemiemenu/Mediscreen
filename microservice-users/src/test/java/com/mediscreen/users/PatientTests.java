@@ -17,6 +17,9 @@ import java.util.List;
 
 import static org.mockito.Mockito.*;
 
+/**
+ * The type Patient tests.
+ */
 @SpringBootTest
 public class PatientTests {
 
@@ -25,11 +28,17 @@ public class PatientTests {
 
     private PatientService patientService;
 
+    /**
+     * Setup.
+     */
     @BeforeEach
     public void Setup() {
         patientService = new PatientServiceImpl(patientRepository);
     }
 
+    /**
+     * Test create patient.
+     */
     @Test
     public void testCreatePatient() {
         // given
@@ -49,6 +58,9 @@ public class PatientTests {
         verify(patientRepository).save(Mockito.any(Patient.class));
     }
 
+    /**
+     * Test update patient.
+     */
     @Test
     public void testUpdatePatient() {
         // given
@@ -72,6 +84,9 @@ public class PatientTests {
         verify(patientRepository).save(Mockito.any(Patient.class));
     }
 
+    /**
+     * Test get patient.
+     */
     @Test
     public void testGetPatient() {
         // given
@@ -93,6 +108,9 @@ public class PatientTests {
         verify(patientRepository).findById(anyInt());
     }
 
+    /**
+     * Test delete patient.
+     */
     @Test
     public void testDeletePatient() {
         // when
@@ -103,6 +121,9 @@ public class PatientTests {
         verify(patientRepository).deleteById(anyInt());
     }
 
+    /**
+     * Test get all patients.
+     */
     @Test
     public void testGetAllPatients() {
         // given

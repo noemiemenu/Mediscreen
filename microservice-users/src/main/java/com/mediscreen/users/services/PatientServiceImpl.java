@@ -10,11 +10,19 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 
+/**
+ * The type Patient service.
+ */
 @Service
 public class PatientServiceImpl implements PatientService {
 
     private final PatientRepository patientRepository;
 
+    /**
+     * Instantiates a new Patient service.
+     *
+     * @param patientRepository the patient repository
+     */
     public PatientServiceImpl(PatientRepository patientRepository) {
         this.patientRepository = patientRepository;
     }
