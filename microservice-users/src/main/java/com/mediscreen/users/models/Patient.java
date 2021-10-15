@@ -168,20 +168,6 @@ public class Patient {
         this.phone = phone;
     }
 
-    @Override
-    public String toString() {
-        return "Patient{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", address='" + address + '\'' +
-                ", email='" + email + '\'' +
-                ", phone=" + phone +
-                ", gender='" + sex + '\'' +
-                ", birthdate=" + dob +
-                '}';
-    }
-
     /**
      * Gets family.
      *
@@ -252,5 +238,19 @@ public class Patient {
      */
     public void setSex(String sex) {
         this.sex = sex;
+    }
+
+    @Override
+    public String toString() {
+        return "Patient{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", address='" + address + '\'' +
+                ", email='" + email + '\'' +
+                ", phone=" + phone +
+                ", gender='" + sex + '\'' +
+                ", birthdate=" + dob +
+                '}';
     }
 }

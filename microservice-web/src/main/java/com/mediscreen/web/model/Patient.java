@@ -122,4 +122,18 @@ public class Patient implements Serializable {
     public void setDob(LocalDate dob) {
         this.dob = dob;
     }
+
+    @Override
+    public String toString() {
+        return "Patient{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", address='" + address + '\'' +
+                ", email='" + email + '\'' +
+                ", phone=" + phone +
+                ", gender='" + sex + '\'' +
+                ", birthdate=" + dob +
+                '}';
+    }
 }
