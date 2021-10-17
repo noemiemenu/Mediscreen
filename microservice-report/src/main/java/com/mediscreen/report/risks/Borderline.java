@@ -12,6 +12,6 @@ public class Borderline implements IRisk {
 
     @Override
     public boolean checkRisk(PatientInfo patientInfo, int numberOfTriggerTerms) {
-        return numberOfTriggerTerms == 2 && patientInfo.getAge() >= 30;
+        return numberOfTriggerTerms == 2 && patientInfo.getAge() > 30;
     }
 }

@@ -42,5 +42,136 @@ public class ReportTest {
         Assertions.assertEquals(6, numberOfTrigger);
     }
 
+    @Test
+    public void getTypeOfRisk_HasNoRiskLevels(){
+        PatientInfo patientInfo = new PatientInfo("M", 69, Arrays.asList("Hémoglobine A1C"));
+
+        //when
+        when(webProxy.getPatientInfo(anyInt())).thenReturn(patientInfo);
+        String None = reportService.getTypeOfRisk(0);
+
+        //then
+        Assertions.assertEquals("NONE", None);
+    }
+
+    @Test
+    public void getTypeOfRisk_Borderline(){
+        PatientInfo patientInfo = new PatientInfo("M", 69, Arrays.asList("Hémoglobine A1C", "Microalbumine"));
+
+        //when
+        when(webProxy.getPatientInfo(anyInt())).thenReturn(patientInfo);
+        String borderline = reportService.getTypeOfRisk(0);
+
+        //then
+        Assertions.assertEquals("Borderline", borderline);
+    }
+    @Test
+    public void getTypeOfRisk_EarlyOnsetIsMenAndBelowThirty(){
+        PatientInfo patientInfo = new PatientInfo("M", 29, Arrays.asList("Hémoglobine A1C", "Microalbumine", "Taille", "Poids", "Fumeur"));
+
+        //when
+        when(webProxy.getPatientInfo(anyInt())).thenReturn(patientInfo);
+        String earlyOnset = reportService.getTypeOfRisk(0);
+
+        //then
+        Assertions.assertEquals("Early onset", earlyOnset);
+    }
+
+    @Test
+    public void getTypeOfRisk_EarlyOnsetIsWomenAndBelowThirty(){
+        PatientInfo patientInfo = new PatientInfo("F", 29, Arrays.asList("Hémoglobine A1C",
+                "Microalbumine",
+                "Taille",
+                "Poids",
+                "Fumeur",
+                "Anormal",
+                "Cholestérol"));
+
+        //when
+        when(webProxy.getPatientInfo(anyInt())).thenReturn(patientInfo);
+        String earlyOnset = reportService.getTypeOfRisk(0);
+
+        //then
+        Assertions.assertEquals("Early onset", earlyOnset);
+    }
+
+    @Test
+    public void getTypeOfRisk_EarlyOnsetAboveThirty(){
+        PatientInfo patientInfo = new PatientInfo("F", 59, Arrays.asList("Hémoglobine A1C",
+                "Microalbumine",
+                "Taille",
+                "Poids",
+                "Fumeur",
+                "Anormal",
+                "Cholestérol",
+                "Vertige"));
+
+        //when
+        when(webProxy.getPatientInfo(anyInt())).thenReturn(patientInfo);
+        String earlyOnset = reportService.getTypeOfRisk(0);
+
+        //then
+        Assertions.assertEquals("Early onset", earlyOnset);
+    }
+
+    @Test
+    public void getTypeOfRisk_InDangerAboveThirty(){
+        PatientInfo patientInfo = new PatientInfo("F", 59, Arrays.asList("Hémoglobine A1C",
+                "Microalbumine",
+                "Taille",
+                "Poids",
+                "Fumeur",
+                "Anormal"));
+
+        //when
+        when(webProxy.getPatientInfo(anyInt())).thenReturn(patientInfo);
+        String inDanger = reportService.getTypeOfRisk(0);
+
+        //then
+        Assertions.assertEquals("In Danger", inDanger);
+    }
+
+    @Test
+    public void getTypeOfRisk_InDanger_IsWomenAndBelowThirty(){
+        PatientInfo patientInfo = new PatientInfo("F", 29, Arrays.asList("Hémoglobine A1C",
+                "Microalbumine",
+                "Taille",
+                "Poids"));
+
+        //when
+        when(webProxy.getPatientInfo(anyInt())).thenReturn(patientInfo);
+        String inDanger = reportService.getTypeOfRisk(0);
+
+        //then
+        Assertions.assertEquals("In Danger", inDanger);
+    }
+    @Test
+    public void getTypeOfRisk_InDanger_IsMenAndBelowThirty(){
+        PatientInfo patientInfo = new PatientInfo("M", 29, Arrays.asList("Hémoglobine A1C",
+                "Microalbumine",
+                "Taille"));
+
+        //when
+        when(webProxy.getPatientInfo(anyInt())).thenReturn(patientInfo);
+        String inDanger = reportService.getTypeOfRisk(0);
+
+        //then
+        Assertions.assertEquals("In Danger", inDanger);
+    }
+
+    @Test
+    public void getTypeOfRisk_None(){
+        PatientInfo patientInfo = new PatientInfo("M", 29, Arrays.asList(" ", " "));
+
+        //when
+        when(webProxy.getPatientInfo(anyInt())).thenReturn(patientInfo);
+        String none = reportService.getTypeOfRisk(0);
+
+        //then
+        Assertions.assertEquals("NONE", none );
+    }
+
+
+
 
 }
