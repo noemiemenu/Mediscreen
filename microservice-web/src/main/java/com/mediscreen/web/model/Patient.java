@@ -9,11 +9,6 @@ import java.time.LocalDate;
 public class Patient implements Serializable {
 
     private int id;
-
-    private String family;
-
-    private String given;
-
     
     private String firstName;
 
@@ -24,11 +19,6 @@ public class Patient implements Serializable {
     @NotBlank
     private String address;
 
-    
-    @Email
-    private String email;
-
-    
     @NotBlank
     private String phone;
 
@@ -49,22 +39,6 @@ public class Patient implements Serializable {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getFamily() {
-        return family;
-    }
-
-    public void setFamily(String family) {
-        this.family = family;
-    }
-
-    public String getGiven() {
-        return given;
-    }
-
-    public void setGiven(String given) {
-        this.given = given;
     }
 
     public String getFirstName() {
@@ -89,14 +63,6 @@ public class Patient implements Serializable {
 
     public void setAddress(String address) {
         this.address = address;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getPhone() {
@@ -130,7 +96,6 @@ public class Patient implements Serializable {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", address='" + address + '\'' +
-                ", email='" + email + '\'' +
                 ", phone=" + phone +
                 ", gender='" + sex + '\'' +
                 ", birthdate=" + dob +

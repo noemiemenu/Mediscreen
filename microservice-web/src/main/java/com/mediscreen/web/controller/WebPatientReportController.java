@@ -1,22 +1,26 @@
 package com.mediscreen.web.controller;
 
 import com.mediscreen.web.model.PatientInfo;
-import com.mediscreen.web.service.PatientInfoService;
+import com.mediscreen.web.service.WebPatientService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class PatientInfoController {
+public class WebPatientReportController {
 
-    private final PatientInfoService patientInfoService;
+    private final WebPatientService webPatientService;
 
-    public PatientInfoController(PatientInfoService patientInfoService) {
-        this.patientInfoService = patientInfoService;
+
+    public WebPatientReportController(WebPatientService webPatientService) {
+        this.webPatientService = webPatientService;
+
     }
 
     @GetMapping("/patientInfo/{id}")
     public PatientInfo getPatientInfo(@PathVariable("id") Integer id){
-        return patientInfoService.patientInfo(id);
+        return webPatientService.patientInfo(id);
     }
+
+
 }

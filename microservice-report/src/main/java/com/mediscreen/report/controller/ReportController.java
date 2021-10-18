@@ -15,12 +15,12 @@ public class ReportController {
     }
 
 
-    @GetMapping("/patientReport/{id}")
+    @GetMapping("/numberOfTriggerTermsByPatientId/{id}")
     public int getNumberOfTriggerTerms(@PathVariable int id){
         return reportService.numberOfTriggerTerms(id);
     }
 
-    @GetMapping("/report/{id}")
+    @GetMapping("/assess/{id}")
     public String getReport(@PathVariable int id){
         return reportService.getTypeOfRisk(id);
     }

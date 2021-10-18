@@ -16,10 +16,7 @@ public interface PatientProxy {
 
     @PostMapping("/patient/add")
     void addPatient(@RequestParam String sex,
-                    @RequestParam String family,
-                    @RequestParam String given,
                     @RequestParam String address,
-                    @RequestParam String email,
                     @RequestParam String lastName,
                     @RequestParam String firstName,
                     @RequestParam String phone,
@@ -28,10 +25,7 @@ public interface PatientProxy {
     @PatchMapping("/patient/update/{id}")
     Patient updatePatient(@PathVariable int id,
                           @RequestParam String sex,
-                          @RequestParam String family,
-                          @RequestParam String given,
                           @RequestParam String address,
-                          @RequestParam String email,
                           @RequestParam String lastName,
                           @RequestParam String firstName,
                           @RequestParam String phone,

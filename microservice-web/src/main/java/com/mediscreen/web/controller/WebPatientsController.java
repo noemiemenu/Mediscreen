@@ -1,7 +1,9 @@
 package com.mediscreen.web.controller;
 
 import com.mediscreen.web.model.Patient;
+import com.mediscreen.web.model.PatientWithReport;
 import com.mediscreen.web.proxies.PatientProxy;
+import com.mediscreen.web.proxies.ReportProxy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -11,24 +13,39 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Controller
 public class WebPatientsController {
 
     private final PatientProxy patientProxy;
+    private final ReportProxy reportProxy;
 
     private final Logger logger = LoggerFactory.getLogger(WebPatientsController.class);
 
-    public WebPatientsController(PatientProxy patientProxy) {
+    public WebPatientsController(PatientProxy patientProxy, ReportProxy reportProxy) {
         this.patientProxy = patientProxy;
+        this.reportProxy = reportProxy;
     }
 
 
     @GetMapping("/patient/home")
     public String showHome(Model model) {
-        model.addAttribute("patients", patientProxy.patientsList());
+        List<Patient> patients = patientProxy.patientsList();
+        List<PatientWithReport> patientWithReportList = new ArrayList<>();
+        for (Patient patient : patients) {
+            String report = reportProxy.getReport(patient.getId());
+            int numberOfTriggerTerms = reportProxy.getNumberOfTriggerTerms(patient.getId());
+            int age = LocalDate.now().getYear() - patient.getDob().getYear();
+            patientWithReportList.add(new PatientWithReport(report, patient, age, numberOfTriggerTerms ));
+        }
+        model.addAttribute("patients", patientWithReportList);
+
+
         return "patient/home";
     }
 
@@ -40,10 +57,7 @@ public class WebPatientsController {
     @PostMapping("/patient/add")
     public String validate(@Valid Patient patient) {
         patientProxy.addPatient(patient.getSex(),
-                patient.getFamily(),
-                patient.getGiven(),
                 patient.getAddress(),
-                patient.getEmail(),
                 patient.getLastName(),
                 patient.getFirstName(),
                 patient.getPhone(),
@@ -66,10 +80,7 @@ public class WebPatientsController {
 
         patientProxy.updatePatient(id,
                 patient.getSex(),
-                patient.getFamily(),
-                patient.getGiven(),
                 patient.getAddress(),
-                patient.getEmail(),
                 patient.getLastName(),
                 patient.getFirstName(),
                 patient.getPhone(),

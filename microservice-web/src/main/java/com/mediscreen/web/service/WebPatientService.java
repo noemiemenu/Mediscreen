@@ -11,13 +11,13 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Service
-public class PatientInfoService {
+public class WebPatientService {
 
     private final PatientProxy patientProxy;
     private final NoteProxy noteProxy;
 
 
-    public PatientInfoService(PatientProxy patientProxy, NoteProxy noteProxy) {
+    public WebPatientService(PatientProxy patientProxy, NoteProxy noteProxy) {
         this.patientProxy = patientProxy;
         this.noteProxy = noteProxy;
     }
@@ -28,5 +28,11 @@ public class PatientInfoService {
         List<Note> notes = noteProxy.getAllNotesByPatId(id);
         int age = LocalDate.now().getYear() - patient.getDob().getYear();
         return new PatientInfo(notes, age, patient.getSex());
+    }
+
+    public Patient getPatientByNoteId(int id){
+        Note note = noteProxy.getNoteById(id);
+        int patientId = note.getPatId();
+        return patientProxy.getPatient(patientId);
     }
 }

@@ -16,6 +16,8 @@ public class PatientInfo {
 
     private List<String> notes;
 
+
+
     public PatientInfo(List<Note> notes, int age, String sex) {
         this.sex = sex;
         this.age = age;

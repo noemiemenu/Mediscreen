@@ -3,6 +3,8 @@ package com.mediscreen.web.controller;
 import com.mediscreen.web.model.Note;
 import com.mediscreen.web.model.Patient;
 import com.mediscreen.web.proxies.NoteProxy;
+import com.mediscreen.web.proxies.PatientProxy;
+import com.mediscreen.web.service.WebPatientService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -15,23 +17,28 @@ import javax.validation.Valid;
 public class WebNoteController {
 
     private final NoteProxy noteProxy;
+    private final PatientProxy patientProxy;
+    private final WebPatientService webPatientService;
 
     private final Logger logger = LoggerFactory.getLogger(WebNoteController.class);
 
-    public WebNoteController(NoteProxy noteProxy) {
+    public WebNoteController(NoteProxy noteProxy, PatientProxy patientProxy, WebPatientService webPatientService) {
         this.noteProxy = noteProxy;
+        this.patientProxy = patientProxy;
+        this.webPatientService = webPatientService;
     }
 
     @GetMapping("/note/notes/{patId}")
     public String getAllNotesByPatId(@PathVariable int patId, Model model){
+        model.addAttribute("patient", patientProxy.getPatient(patId));
         model.addAttribute("notes", noteProxy.getAllNotesByPatId(patId));
         return "note/notes";
 
     }
 
-
     @GetMapping("/note/add/{patId}")
     public String showAddPatientForm(@PathVariable int patId, Model model) {
+        model.addAttribute("patient", patientProxy.getPatient(patId));
         model.addAttribute("patId", patId);
         return "note/add";
     }
@@ -47,7 +54,9 @@ public class WebNoteController {
     @GetMapping("/note/update/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
         Note note = noteProxy.getNoteById(id);
+        Patient patient = webPatientService.getPatientByNoteId(id);
         model.addAttribute("note", note);
+        model.addAttribute("patient", patient);
         logger.info("Note id from microservice-notes: " + note.getId());
         return "note/update";
     }
@@ -67,16 +76,4 @@ public class WebNoteController {
         noteProxy.deleteNoteById(id);
         return "redirect:/note/notes/" + noteId.getPatId();
     }
-
-    /*@GetMapping("/notes")
-    public String getAllNotes(){
-        noteProxy.getAllNotes();
-        return "";
-    }
-
-    @GetMapping("/note/{id}")
-    public String getNoteById(@PathVariable int id){
-        noteProxy.getNoteById(id);
-        return "";
-    }*/
 }
