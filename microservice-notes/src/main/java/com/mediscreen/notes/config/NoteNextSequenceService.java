@@ -1,9 +1,4 @@
-package com.mediscreen.notes.services;
-
-import com.mediscreen.notes.model.Note;
-import static org.springframework.data.mongodb.core.FindAndModifyOptions.options;
-import static org.springframework.data.mongodb.core.query.Criteria.where;
-import static org.springframework.data.mongodb.core.query.Query.query;
+package com.mediscreen.notes.config;
 
 import com.mediscreen.notes.model.NoteCustomSequences;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,11 +6,16 @@ import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 
+import static org.springframework.data.mongodb.core.FindAndModifyOptions.options;
+import static org.springframework.data.mongodb.core.query.Criteria.where;
+import static org.springframework.data.mongodb.core.query.Query.query;
+
 /**
  * The type Note next sequence service.
  */
 @Service
 public class NoteNextSequenceService {
+
     @Autowired
     private MongoOperations mongo;
 

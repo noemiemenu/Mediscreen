@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
+/**
+ * The type Web note controller.
+ */
 @Controller
 public class WebNoteController {
 
@@ -22,12 +25,26 @@ public class WebNoteController {
 
     private final Logger logger = LoggerFactory.getLogger(WebNoteController.class);
 
+    /**
+     * Instantiates a new Web note controller.
+     *
+     * @param noteProxy         the note proxy
+     * @param patientProxy      the patient proxy
+     * @param webPatientService the web patient service
+     */
     public WebNoteController(NoteProxy noteProxy, PatientProxy patientProxy, WebPatientService webPatientService) {
         this.noteProxy = noteProxy;
         this.patientProxy = patientProxy;
         this.webPatientService = webPatientService;
     }
 
+    /**
+     * Get all notes by pat id string.
+     *
+     * @param patId the pat id
+     * @param model the model
+     * @return the string
+     */
     @GetMapping("/note/notes/{patId}")
     public String getAllNotesByPatId(@PathVariable int patId, Model model){
         model.addAttribute("patient", patientProxy.getPatient(patId));
@@ -36,6 +53,13 @@ public class WebNoteController {
 
     }
 
+    /**
+     * Show add patient form string.
+     *
+     * @param patId the pat id
+     * @param model the model
+     * @return the string
+     */
     @GetMapping("/note/add/{patId}")
     public String showAddPatientForm(@PathVariable int patId, Model model) {
         model.addAttribute("patient", patientProxy.getPatient(patId));
@@ -43,6 +67,13 @@ public class WebNoteController {
         return "note/add";
     }
 
+    /**
+     * Create note string.
+     *
+     * @param patId the pat id
+     * @param e     the e
+     * @return the string
+     */
     @PostMapping("/note/add/{patId}")
     public String createNote(@PathVariable int patId,@Valid String e){
         logger.info("patient id: " + patId);
@@ -51,6 +82,13 @@ public class WebNoteController {
         return "redirect:/note/notes/" + patId;
     }
 
+    /**
+     * Show update form string.
+     *
+     * @param id    the id
+     * @param model the model
+     * @return the string
+     */
     @GetMapping("/note/update/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
         Note note = noteProxy.getNoteById(id);
@@ -61,6 +99,13 @@ public class WebNoteController {
         return "note/update";
     }
 
+    /**
+     * Update note string.
+     *
+     * @param id   the id
+     * @param note the note
+     * @return the string
+     */
     @PostMapping("/note/update/{id}")
     public String updateNote(@PathVariable int id, @Valid Note note){
         logger.info("note id: " + note.getId());
@@ -69,6 +114,12 @@ public class WebNoteController {
         return "redirect:/note/notes/" + noteId.getPatId();
     }
 
+    /**
+     * Delete note string.
+     *
+     * @param id the id
+     * @return the string
+     */
     @GetMapping("/note/delete/{id}")
     public String deleteNote(@PathVariable int id){
         logger.info("note id: " + id);

@@ -3,7 +3,7 @@ package com.mediscreen.notes.controllers;
 import com.mediscreen.notes.interfaces.NoteService;
 import com.mediscreen.notes.model.Note;
 import com.mediscreen.notes.repository.NoteRepository;
-import com.mediscreen.notes.services.NoteNextSequenceService;
+import com.mediscreen.notes.config.NoteNextSequenceService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;

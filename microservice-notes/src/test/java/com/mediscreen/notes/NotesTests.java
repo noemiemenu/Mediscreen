@@ -124,7 +124,7 @@ public class NotesTests {
      * Test get all patients.
      */
     @Test
-    public void testGetAllPatients() {
+    public void testGetAllNotes() {
         // given
         Note note = new Note();
         note.setE("Test");
@@ -141,5 +141,6 @@ public class NotesTests {
         Assertions.assertEquals(notes.size(), 1);
         Assertions.assertEquals(notes.iterator().next().getId(), 1);
     }
+
 
 }

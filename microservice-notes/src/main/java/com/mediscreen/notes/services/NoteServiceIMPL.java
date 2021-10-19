@@ -15,6 +15,7 @@ public class NoteServiceIMPL implements NoteService {
 
     /**
      * Instantiates a new Note service.
+     *
      * @param noteRepository the note repository
      */
     public NoteServiceIMPL(NoteRepository noteRepository) {

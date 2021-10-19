@@ -3,6 +3,9 @@ package com.mediscreen.report.risks;
 import com.mediscreen.report.interfaces.IRisk;
 import com.mediscreen.report.model.PatientInfo;
 
+/**
+ * The type Borderline.
+ */
 public class Borderline implements IRisk {
 
     @Override

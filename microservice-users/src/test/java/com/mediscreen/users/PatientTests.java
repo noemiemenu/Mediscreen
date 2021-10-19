@@ -20,11 +20,12 @@ import static org.mockito.Mockito.*;
 /**
  * The type Patient tests.
  */
-@SpringBootTest
+@SpringBootTest(classes = {PatientRepository.class})
 public class PatientTests {
 
     @MockBean
     private PatientRepository patientRepository;
+
 
     private PatientService patientService;
 
@@ -43,9 +44,9 @@ public class PatientTests {
     public void testCreatePatient() {
         // given
         Patient patient = new Patient();
-        patient.setFamily("Test");
-        patient.setGiven("Test");
         patient.setSex("F");
+        patient.setFirstName("Noémie");
+        patient.setLastName("menu");
 
         // when
         when(patientRepository.save(Mockito.any(Patient.class))).thenReturn(patient);
@@ -54,7 +55,8 @@ public class PatientTests {
 
         // then
         Assertions.assertNotNull(savedPatient);
-        Assertions.assertEquals(savedPatient.getFamily(), "Test");
+        Assertions.assertEquals(savedPatient.getFirstName(), "Noémie");
+        Assertions.assertEquals(savedPatient.getLastName(), "menu");
         verify(patientRepository).save(Mockito.any(Patient.class));
     }
 
@@ -65,10 +67,10 @@ public class PatientTests {
     public void testUpdatePatient() {
         // given
         Patient patient = new Patient();
-        patient.setFamily("Test");
         patient.setId(1);
-        patient.setGiven("Test");
         patient.setSex("F");
+        patient.setFirstName("Noémie");
+        patient.setLastName("menu");
 
         // when
         when(patientRepository.save(Mockito.any(Patient.class))).thenReturn(patient);
@@ -78,8 +80,9 @@ public class PatientTests {
 
         // then
         Assertions.assertNotNull(savedPatient);
-        Assertions.assertEquals(savedPatient.getFamily(), "Test");
         Assertions.assertEquals(savedPatient.getId(), 1);
+        Assertions.assertEquals(savedPatient.getFirstName(), "Noémie");
+        Assertions.assertEquals(savedPatient.getLastName(), "menu");
         verify(patientRepository).findById(anyInt());
         verify(patientRepository).save(Mockito.any(Patient.class));
     }
@@ -91,10 +94,11 @@ public class PatientTests {
     public void testGetPatient() {
         // given
         Patient patient = new Patient();
-        patient.setFamily("Test");
         patient.setId(1);
-        patient.setGiven("Test");
         patient.setSex("F");
+        patient.setFirstName("Noémie");
+        patient.setLastName("menu");
+
 
         // when
         when(patientRepository.findById(Mockito.anyInt())).thenReturn(patient);
@@ -103,8 +107,9 @@ public class PatientTests {
 
         // then
         Assertions.assertNotNull(savedPatient);
-        Assertions.assertEquals(savedPatient.getFamily(), "Test");
         Assertions.assertEquals(savedPatient.getId(), 1);
+        Assertions.assertEquals(savedPatient.getFirstName(), "Noémie");
+        Assertions.assertEquals(savedPatient.getLastName(), "menu");
         verify(patientRepository).findById(anyInt());
     }
 
@@ -128,10 +133,9 @@ public class PatientTests {
     public void testGetAllPatients() {
         // given
         Patient patient = new Patient();
-        patient.setFamily("Test");
         patient.setId(1);
-        patient.setGiven("Test");
         patient.setSex("F");
+
         List<Patient> patients = new ArrayList<>();
         patients.add(patient);
         when(patientRepository.findAll()).thenReturn(patients);

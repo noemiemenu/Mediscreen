@@ -14,17 +14,31 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * The type Report service.
+ */
 @Service
 public class ReportService {
 
     private final WebProxy webProxy;
     private final List<IRisk> risks = Arrays.asList(new None(), new Borderline(), new EarlyOnset(), new InDanger());
 
+    /**
+     * Instantiates a new Report service.
+     *
+     * @param webProxy the web proxy
+     */
     public ReportService(WebProxy webProxy) {
         this.webProxy = webProxy;
     }
 
 
+    /**
+     * Number of trigger terms int.
+     *
+     * @param id the id
+     * @return the int
+     */
     public int numberOfTriggerTerms(int id){
         List<String> notes = webProxy.getPatientInfo(id).getNotes();
         int triggerTerms = 0;
@@ -38,6 +52,12 @@ public class ReportService {
         return triggerTerms;
     }
 
+    /**
+     * Gets type of risk.
+     *
+     * @param id the id
+     * @return the type of risk
+     */
     public String getTypeOfRisk(int id) {
         PatientInfo patientInfo = webProxy.getPatientInfo(id);
         int numberOfTriggerTerms = numberOfTriggerTerms(id);

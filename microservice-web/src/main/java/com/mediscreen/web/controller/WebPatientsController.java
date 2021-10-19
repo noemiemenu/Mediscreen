@@ -19,6 +19,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+/**
+ * The type Web patients controller.
+ */
 @Controller
 public class WebPatientsController {
 
@@ -27,12 +30,24 @@ public class WebPatientsController {
 
     private final Logger logger = LoggerFactory.getLogger(WebPatientsController.class);
 
+    /**
+     * Instantiates a new Web patients controller.
+     *
+     * @param patientProxy the patient proxy
+     * @param reportProxy  the report proxy
+     */
     public WebPatientsController(PatientProxy patientProxy, ReportProxy reportProxy) {
         this.patientProxy = patientProxy;
         this.reportProxy = reportProxy;
     }
 
 
+    /**
+     * Show home string.
+     *
+     * @param model the model
+     * @return the string
+     */
     @GetMapping("/patient/home")
     public String showHome(Model model) {
         List<Patient> patients = patientProxy.patientsList();
@@ -49,11 +64,22 @@ public class WebPatientsController {
         return "patient/home";
     }
 
+    /**
+     * Show add patient form string.
+     *
+     * @return the string
+     */
     @GetMapping("/patient/add")
     public String showAddPatientForm() {
         return "patient/add";
     }
 
+    /**
+     * Validate string.
+     *
+     * @param patient the patient
+     * @return the string
+     */
     @PostMapping("/patient/add")
     public String validate(@Valid Patient patient) {
         patientProxy.addPatient(patient.getSex(),
@@ -65,6 +91,13 @@ public class WebPatientsController {
         return "redirect:/patient/home";
     }
 
+    /**
+     * Show update form string.
+     *
+     * @param id    the id
+     * @param model the model
+     * @return the string
+     */
     @GetMapping("/patient/update/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
         Patient patient = patientProxy.getPatient(id);
@@ -73,6 +106,13 @@ public class WebPatientsController {
         return "patient/update";
     }
 
+    /**
+     * Update patient string.
+     *
+     * @param id      the id
+     * @param patient the patient
+     * @return the string
+     */
     @PostMapping("/patient/update/{id}")
     public String updatePatient(@PathVariable("id") Integer id, @Valid Patient patient) {
         logger.info("patient id: " + patient.getId());
@@ -89,6 +129,12 @@ public class WebPatientsController {
         return "redirect:/patient/home";
     }
 
+    /**
+     * Delete patient string.
+     *
+     * @param id the id
+     * @return the string
+     */
     @GetMapping("/patient/delete/{id}")
     public String deletePatient(@PathVariable("id") Integer id) {
         patientProxy.deletePatient(id);
