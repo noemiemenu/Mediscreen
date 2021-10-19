@@ -7,77 +7,67 @@
     <link rel="stylesheet" href="/css/bootstrap.min.css" >
 </head>
 <body>
-<div class="container">
-    <div class="row">
-        <h2>Update Patient</h2>
-    </div>
+<ul class="nav nav-tabs">
+    <li class="nav-item" role="presentation">
+        <a class="nav-link" href="/patient/home" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Home</a>
+    </li>
+</ul>
+    <div class="container">
+        <div class="my-3 p-3 bg-body rounded shadow-sm">
+            <h2 class="pb-2 mb-0">Update Patient</h2>
+            <h2 class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <a href="/patient/add" class="btn btn-primary">Add new Patient</a>
+            </h2>
+            <!--/*@thymesVar id="patient" type="com.mediscreen.web.model.Patient"*/-->
+            <form th:action="@{/patient/update/{id}(id=${patient.id})}" th:object="${patient}" method="post" class="form-horizontal" >
+                <div class="row g-3">
+                    <div class="col-sm-6">
+                        <label for="firstName" class="form-label">First name</label>
+                        <input th:field="*{firstName}" type="text" class="form-control" id="firstName" required placeholder="firstName">
+                    </div>
 
-    <div class="row">
-        <!--/*@thymesVar id="patient" type="com.mediscreen.web.model.Patient"*/-->
-        <form th:action="@{/patient/update/{id}(id=${patient.id})}" th:object="${patient}" method="post" class="form-horizontal" style="width: 100%">
-            <div class="row mb-3">
-                <div class="mb-3">
-                    <label for="Family" class="form-label">Family</label>
-                    <input th:field="*{family}" type="text" class="form-control" id="Family" required placeholder="Family">
-                </div>
-            </div>
-            <div class="row mb-3">
-                <div class="mb-3">
-                    <label for="given" class="form-label">given</label>
-                    <input th:field="*{given}" type="text" class="form-control" id="given" required placeholder="given">
-                </div>
-            </div>
-            <div class="row mb-3">
-                <div class="mb-3">
-                    <label for="firstName" class="form-label">firstName</label>
-                    <input th:field="*{firstName}" type="text" class="form-control" id="firstName" placeholder="firstName">
-                </div>
-            </div>
-            <div class="row mb-3">
-                <div class="mb-3">
-                    <label for="lastName" class="form-label">lastName</label>
-                    <input th:field="*{lastName}" type="text" class="form-control" id="lastName" placeholder="lastName">
-                </div>
-            </div>
-            <div class="row mb-3">
-                <div class="mb-3">
-                    <label for="email" class="form-label">email</label>
-                    <input th:field="*{email}" type="email" class="form-control" id="email" placeholder="email">
-                </div>
-            </div>
-            <div class="row mb-3">
-                <div class="mb-3">
-                    <label for="address" class="form-label">address</label>
-                    <input th:field="*{address}" type="text" class="form-control" id="address" required placeholder="address">
-                </div>
-            </div>
-            <div class="row mb-3">
-                <div class="mb-3">
-                    <label for="birthdate" class="form-label">birthdate</label>
-                    <input th:field="*{dob}" type="date" class="form-control" id="birthdate" required placeholder="birthdate">
-                </div>
-            </div>
-            <div class="row mb-3">
-                <div class="mb-3">
-                    <label for="phone" class="form-label">phone</label>
-                    <input th:field="*{phone}" type="tel" class="form-control" id="phone" required placeholder="phone"
-                           pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-                    >
-                </div>
-            </div>
-            <div class="row mb-3">
-                <div class="mb-3">
-                    <label for="sex" class="form-label">sex</label>
-                    <input th:field="*{sex}" type="text" class="form-control" id="sex" required placeholder="sex">
-                </div>
-            </div>
-            <div class="col-auto">
-                <a class="btn btn-danger mb-3" role="button" href="/patient/home">Cancel</a>
-                <button type="submit" value="updatePatient" class="btn btn-primary mb-3">Update Patient</button>
-            </div>
-        </form>
-    </div>
+                    <div class="col-sm-6">
+                        <label for="lastName" class="form-label">Last name</label>
+                        <input th:field="*{lastName}" type="text" class="form-control" id="lastName" required placeholder="lastName">
+                    </div>
 
-</div>
+                    <div class="col-12">
+                        <label for="address" class="form-label">Address</label>
+                        <input th:field="*{address}" type="text" class="form-control" id="address" required placeholder="address">
+                    </div>
+
+                    <div class="col-sm-6">
+                        <label for="birthdate" class="form-label">Birthdate</label>
+                        <input th:field="*{dob}" type="date" class="form-control" id="birthdate" required placeholder="birthdate">
+                    </div>
+
+                    <div class="col-sm-6">
+                        <label for="phone" class="form-label">phone</label>
+                        <input th:field="*{phone}" type="tel" class="form-control" id="phone" required placeholder="phone"
+                               pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+                    </div>
+                    <h6 class="mb-3 m-sm-3">Sex :</h6>
+                    <div class="m-sm-3">
+                        <div class="form-check">
+                            <input th:field="*{sex}" class="form-check-input" type="radio" value="M" id="sex">
+                            <label for="sex" class="form-check-label">
+                                M
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input th:field="*{sex}" class="form-check-input" type="radio" value="F" id="sex">
+                            <label class="form-check-label" for="sex">
+                                F
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-grid gap-2 d-md-3 justify-content-md-end">
+                    <a class="btn btn-danger mb-3" role="button" href="/patient/home">Cancel</a>
+                    <button type="submit" value="updatePatient" class="btn btn-primary mb-3">Update Patient</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </body>
 </html>

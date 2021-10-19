@@ -5,53 +5,107 @@
     <meta charset="utf-8"/>
     <title>Mediscreen</title>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css">
+
+
+
 </head>
 <body>
-<div class="container">
-    <div class="row">
-        <div class="col-6">
-            <a href="/patient/home">home</a>&nbsp;|&nbsp;
+<ul class="nav nav-tabs">
+    <li class="nav-item" role="presentation">
+        <button class="nav-link active" href="/patient/home" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Home</button>
+    </li>
+</ul>
 
-        </div>
-    </div>
-    <a href="/patient/add" class="btn btn-primary btn-sm">Add new Patient</a>
-    <div class="row"><h2>Patients List</h2></div>
-    <div class="table">
+<div class="container-fluid p-5 ">
+    <div class="my-3 p-3 bg-body rounded shadow-sm">
+
+        <h2 class="pb-2 mb-0">Patient list</h2>
+
+        <img src="/Images/image.jpg" class="rounded mx-auto d-block" alt="Image flottante" />
+
+        <h2 class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <a href="/patient/add" class="btn btn-primary">Add new Patient</a>
+        </h2>
         <table class="table table-striped">
             <thead>
-            <tr class="text-center">
-                <th>Id</th>
-                <th>First name</th>
-                <th>Last name</th>
-                <th>Address</th>
-                <th>Phone</th>
-                <th>Sex</th>
-                <th>Email</th>
-                <th>Birthdate</th>
-                <th>Notes List</th>
-                <th>Create Note</th>
-                <th>Edit</th>
-                <th>Delete</th>
-            </tr>
+                <tr class="text-center">
+                    <th>First name</th>
+                    <th>Last name</th>
+                    <th>Address</th>
+                    <th>Phone</th>
+                    <th>Sex</th>
+                    <th>Age</th>
+                    <th>Trigger term</th>
+                    <th>Report</th>
+                    <th>Notes</th>
+                    <th>Add Note</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
             </thead>
             <tbody>
-            <!--/*@thymesVar id="patient" type="com.mediscreen.web.model.Patient"*/-->
-            <tr class="text-center" th:each="patient : ${patients}">
-                <td th:text="${patient.getId()}"></td>
-                <td th:text="${patient.getFirstName()}"></td>
-                <td th:text="${patient.getLastName()}"></td>
-                <td th:text="${patient.getAddress()}"></td>
-                <td th:text="${patient.getPhone()}"></td>
-                <td th:text="${patient.getSex()}"></td>
-                <td th:text="${patient.getEmail()}"></td>
-                <td th:text="${patient.getDob()}"></td>
-                <td> <a th:href="@{/note/notes/{id}(id=${patient.getId()})}">Notes</a> </td>
-                <td> <a th:href="@{/note/add/{id}(id=${patient.getId()})}">New Note</a> </td>
-                <td><a th:href="@{/patient/update/{id}(id=${patient.getId()})}">Edit</a></td>
-                <td><a th:href="@{/patient/delete/{id}(id=${patient.getId()})}">Delete</a></td>
-
-
-            </tr>
+            <!--/*@thymesVar id="patient" type="com.mediscreen.web.model.PatientWithReport"*/-->
+                <tr class="text-center p-3 bg-body rounded shadow-sm" th:each="patient : ${patients}">
+                    <td class="lg" th:text="${patient.getPatient().getFirstName()}"></td>
+                    <td th:text="${patient.getPatient().getLastName()}"></td>
+                    <td th:text="${patient.getPatient().getAddress()}"></td>
+                    <td th:text="${patient.getPatient().getPhone()}"></td>
+                    <td th:text="${patient.getPatient().getSex()}"></td>
+                    <td th:text="${patient.getAgeOfPatient()}"></td>
+                    <td th:text="${patient.getNumberOfTriggerTerms()}"></td>
+                    <td th:switch="${patient.getReport()}">
+                        <p th:case="'NONE'" class="text-success">None</p>
+                        <p th:case="'Borderline'" class="text-info">Borderline</p>
+                        <p th:case="'Early onset'" class="text-warning">Early onset</p>
+                        <p th:case="'In Danger'" class="text-danger">In Danger</p>
+                    </td>
+                    <td>
+                        <a th:href="@{/note/notes/{id}(id=${patient.getPatient().getId()})}">
+                            <button type="button" class="btn btn-primary">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                     class="bi bi-folder-symlink" viewBox="0 0 16 16">
+                                    <path d="m11.798 8.271-3.182 1.97c-.27.166-.616-.036-.616-.372V9.1s-2.571-.3-4 2.4c.571-4.8 3.143-4.8 4-4.8v-.769c0-.336.346-.538.616-.371l3.182 1.969c.27.166.27.576 0 .742z"></path>
+                                    <path d="m.5 3 .04.87a1.99 1.99 0 0 0-.342 1.311l.637 7A2 2 0 0 0 2.826 14h10.348a2 2 0 0 0 1.991-1.819l.637-7A2 2 0 0 0 13.81 3H9.828a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 6.172 1H2.5a2 2 0 0 0-2 2zm.694 2.09A1 1 0 0 1 2.19 4h11.62a1 1 0 0 1 .996 1.09l-.636 7a1 1 0 0 1-.996.91H2.826a1 1 0 0 1-.995-.91l-.637-7zM6.172 2a1 1 0 0 1 .707.293L7.586 3H2.19c-.24 0-.47.042-.683.12L1.5 2.98a1 1 0 0 1 1-.98h3.672z"></path>
+                                </svg>
+                            </button>
+                        </a>
+                    </td>
+                    <td>
+                        <a th:href="@{/note/add/{id}(id=${patient.getPatient().getId()})}">
+                            <button type="button" class="btn btn-success">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-journal-plus" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M8 5.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 .5-.5z"></path>
+                                    <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z"></path>
+                                    <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z"></path>
+                                </svg>
+                            </button>
+                        </a>
+                    </td>
+                    <td>
+                        <a th:href="@{/patient/update/{id}(id=${patient.getPatient().getId()})}">
+                            <button type="button" class="btn btn-outline-secondary">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                    <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"></path>
+                                    <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"></path>
+                                </svg>
+                                <span class="visually-hidden"></span>
+                            </button>
+                        </a>
+                    </td>
+                    <td>
+                        <a th:href="@{/patient/delete/{id}(id=${patient.getPatient().getId()})}">
+                            <button type="button" class="btn btn-outline-danger">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                     class="bi bi-trash" viewBox="0 0 16 16">
+                                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"></path>
+                                    <path fill-rule="evenodd"
+                                          d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"></path>
+                                </svg>
+                            </button>
+                        </a>
+                    </td>
+                </tr>
             </tbody>
         </table>
     </div>

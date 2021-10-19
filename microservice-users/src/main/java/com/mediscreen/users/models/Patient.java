@@ -25,12 +25,6 @@ public class Patient {
     private int id;
 
     @Column
-    private String family;
-
-    @Column
-    private String given;
-
-    @Column
     @NotBlank
     private String firstName;
 
@@ -41,10 +35,6 @@ public class Patient {
     @Column
     @NotBlank
     private String address;
-
-    @Column
-    @Email
-    private String email;
 
     @Column
     @NotBlank
@@ -133,24 +123,6 @@ public class Patient {
     }
 
     /**
-     * Gets email.
-     *
-     * @return the email
-     */
-    public String getEmail() {
-        return email;
-    }
-
-    /**
-     * Sets email.
-     *
-     * @param email the email
-     */
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    /**
      * Gets phone.
      *
      * @return the phone
@@ -168,55 +140,6 @@ public class Patient {
         this.phone = phone;
     }
 
-    @Override
-    public String toString() {
-        return "Patient{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", address='" + address + '\'' +
-                ", email='" + email + '\'' +
-                ", phone=" + phone +
-                ", gender='" + sex + '\'' +
-                ", birthdate=" + dob +
-                '}';
-    }
-
-    /**
-     * Gets family.
-     *
-     * @return the family
-     */
-    public String getFamily() {
-        return family;
-    }
-
-    /**
-     * Sets family.
-     *
-     * @param family the family
-     */
-    public void setFamily(String family) {
-        this.family = family;
-    }
-
-    /**
-     * Gets given.
-     *
-     * @return the given
-     */
-    public String getGiven() {
-        return given;
-    }
-
-    /**
-     * Sets given.
-     *
-     * @param given the given
-     */
-    public void setGiven(String given) {
-        this.given = given;
-    }
 
     /**
      * Gets dob.
@@ -252,5 +175,18 @@ public class Patient {
      */
     public void setSex(String sex) {
         this.sex = sex;
+    }
+
+    @Override
+    public String toString() {
+        return "Patient{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", address='" + address + '\'' +
+                ", phone=" + phone +
+                ", gender='" + sex + '\'' +
+                ", birthdate=" + dob +
+                '}';
     }
 }

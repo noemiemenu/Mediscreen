@@ -4,30 +4,39 @@
 <head>
     <meta charset="utf-8"/>
     <title>Mediscreen</title>
-    <link rel="stylesheet" href="/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
 </head>
 <body>
+<ul class="nav nav-tabs">
+    <li class="nav-item" role="presentation">
+        <a class="nav-link" href="/patient/home" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button"
+           role="tab" aria-controls="home" aria-selected="true">Home</a>
+    </li>
+</ul>
 <div class="container">
-    <div class="row">
-        <h2>Update Note</h2>
-    </div>
-
-    <div class="row">
-        <!--/*@thymesVar id="note" type="com.mediscreen.web.model.Note"*/-->
-        <form th:action="@{/note/update/{id}(id=${note.id})}" th:object="${note}" method="post" class="form-horizontal" style="width: 100%">
-            <div class="mb-3">
-                <div class="mb-3">
-                    <label for="e" class="form-label">note</label>
-                    <textarea th:field="*{e}" class="form-control" id="e" rows="3"></textarea>
-                </div>
+    <div class="my-3 p-3 bg-body rounded shadow-sm">
+        <div class="container">
+            <h2 class="pb-2 mb-0">Update Note</h2>
+            <div class="row">
+                <!--/*@thymesVar id="note" type="com.mediscreen.web.model.Note"*/-->
+                <form th:action="@{/note/update/{id}(id=${note.id})}" th:object="${note}" method="post"
+                      class="form-horizontal" style="width: 100%">
+                    <div class="mb-3">
+                        <div class="mb-3">
+                            <label for="e" class="form-label"></label>
+                            <textarea th:field="*{e}" class="form-control" id="e" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-auto" th:each="patient : ${patient}">
+                        <!--/*@thymesVar id="getId" type="com.mediscreen.web.model.Patient"*/-->
+                        <a class="btn btn-danger mb-3" role="button"
+                           th:href="@{/note/notes/{id}(id=${patient.getId()})}">Cancel</a>
+                        <button type="submit" value="updateNote" class="btn btn-primary mb-3">Update Note</button>
+                    </div>
+                </form>
             </div>
-            <div class="col-auto">
-                <a class="btn btn-danger mb-3" role="button" href="/patient/home">Cancel</a>
-                <button type="submit" value="updateNote" class="btn btn-primary mb-3">Update Note</button>
-            </div>
-        </form>
+        </div>
     </div>
-
 </div>
 </body>
 </html>

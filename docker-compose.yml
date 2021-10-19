@@ -44,4 +44,8 @@ services:
     container_name: "mediscreen-microservice-notes"
     ports:
       - "8282:8282"
-
+  mediscreen_microservice_report:
+    build: ./microservice-report
+    container_name: "mediscreen-microservice-report"
+    ports:
+      - "8083:8083"

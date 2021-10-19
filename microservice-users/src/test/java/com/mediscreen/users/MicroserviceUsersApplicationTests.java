@@ -9,11 +9,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class MicroserviceUsersApplicationTests {
 
-    /**
-     * Context loads.
-     */
-    @Test
-    void contextLoads() {
-    }
+
 
 }

@@ -35,13 +35,10 @@ public class PatientServiceImpl implements PatientService {
     @Override
     public Patient updatePatient(int id, Patient patientToUpdate) {
         Patient patient = patientRepository.findById(id);
-        patient.setFamily(patientToUpdate.getFamily());
-        patient.setGiven(patientToUpdate.getGiven());
         patient.setFirstName(patientToUpdate.getFirstName());
         patient.setLastName(patientToUpdate.getLastName());
         patient.setAddress(patientToUpdate.getAddress());
         patient.setDob(patientToUpdate.getDob());
-        patient.setEmail(patientToUpdate.getEmail());
         patient.setSex(patientToUpdate.getSex());
         patient.setPhone(patientToUpdate.getPhone());
         patientRepository.save(patient);
