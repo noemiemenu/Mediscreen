@@ -20,12 +20,12 @@
             <div class="row g-3">
                 <div class="col-md-6">
                     <label for="firstName" class="form-label">first name</label>
-                    <input name="firstName" type=text class="form-control" id="firstName" placeholder="firstName" required>
+                    <input name="firstName" type=text class="form-control" id="firstName" placeholder="Jhon" required>
                 </div>
 
                 <div class="col-md-6">
                     <label for="lastName" class="form-label">last name</label>
-                    <input name="lastName" type=text class="form-control" id="lastName" placeholder="lastName" required>
+                    <input name="lastName" type=text class="form-control" id="lastName" placeholder="Doe" required>
                 </div>
 
                 <div class="col-md-6">
@@ -37,23 +37,22 @@
                 <div class="col-md-6">
                     <label for="phone" class="form-label">phone</label>
                     <input name="phone" type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" class="form-control"
-                           id="phone" required placeholder="phone">
+                           id="phone" required placeholder="111-111-1111">
                 </div>
                 <div class="col-sm-6">
                     <label for="dob" class="form-label">Birthdate</label>
-                    <input name="dob" type="date" class="form-control" id="dob" required placeholder="Birthdate">
+                    <input name="dob" type="date" class="form-control" id="dob"  placeholder="01/01/1999" required>
                 </div>
-
                 <h6 class="mb-3 m-sm-3">Sex :</h6>
                 <div class="m-sm-3">
-                    <div class="form-check ">
-                        <input class="form-check-input" type="radio" value="M" id="sex" name="sex">
-                        <label for="sex" class="form-check-label">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" value="M" id="sex" name="sex" checked >
+                        <label for="sex" class="form-check-label" th:default="M" >
                             M
                         </label>
                     </div>
                     <div class="form-check ">
-                        <input class="form-check-input" type="radio" value="F" id="sex" name="sex">
+                        <input class="form-check-input" type="radio" value="F" id="sex" name="sex" >
                         <label class="form-check-label" for="sex">
                             F
                         </label>
