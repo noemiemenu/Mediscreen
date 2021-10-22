@@ -1,7 +1,15 @@
 # Mediscreen
 
+Mediscreen est une application permettant aux officiers de santé de prévenir les personnes qui ont un mode de vie potentiellement dangereux. L’application calcule le risque de contracter une maladie.
+
+## Build 
+
+```bash
+./gradlew -q build      
+```
+
 ## Launch postgresql server on docker
 
 ```bash
-docker run --name mediscreen-postgres -p 5432:5432 -e POSTGRES_PASSWORD=mediscreen -e POSTGRES_USER=mediscreen -e POSTGRES_DB=mediscreen -d postgres
+docker-compose up -d     
 ```
