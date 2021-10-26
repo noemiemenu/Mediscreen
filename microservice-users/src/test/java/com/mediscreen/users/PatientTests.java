@@ -4,18 +4,29 @@ import com.mediscreen.users.interfaces.PatientService;
 import com.mediscreen.users.models.Patient;
 import com.mediscreen.users.repositories.PatientRepository;
 import com.mediscreen.users.services.PatientServiceImpl;
+import org.hibernate.type.descriptor.java.LocaleTypeDescriptor;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultActions;
+import org.springframework.test.web.servlet.ResultMatcher;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.time.LocalDate;
+import java.util.*;
 
+import static org.assertj.core.internal.bytebuddy.matcher.ElementMatchers.is;
 import static org.mockito.Mockito.*;
+import static org.springframework.test.web.client.match.MockRestRequestMatchers.jsonPath;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
  * The type Patient tests.
@@ -25,7 +36,6 @@ public class PatientTests {
 
     @MockBean
     private PatientRepository patientRepository;
-
 
     private PatientService patientService;
 
@@ -37,11 +47,13 @@ public class PatientTests {
         patientService = new PatientServiceImpl(patientRepository);
     }
 
+    private MockMvc mockMvc;
+
     /**
      * Test create patient.
      */
     @Test
-    public void testCreatePatient() {
+    public void testCreatePatient() throws Exception {
         // given
         Patient patient = new Patient();
         patient.setSex("F");
@@ -121,7 +133,6 @@ public class PatientTests {
         // when
         patientService.deletePatient(1);
 
-
         // then
         verify(patientRepository).deleteById(anyInt());
     }
@@ -147,5 +158,6 @@ public class PatientTests {
         Assertions.assertEquals(patientList.size(), 1);
         Assertions.assertEquals(patientList.iterator().next().getId(), 1);
     }
+
 
 }
